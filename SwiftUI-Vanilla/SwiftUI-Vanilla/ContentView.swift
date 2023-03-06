@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  SwiftUI-Vanilla
-//
-//  Created by Sujin Jin on 2023/03/06.
-//
-
 import SwiftUI
 
 enum Tab {
@@ -13,15 +6,21 @@ enum Tab {
     case three
 }
 
-struct ADetail: View {
-    var body: some View {
-        Text("A")
-    }
-}
-
 struct ContentView: View {
     var body: some View {
         TabHomeView()
+    }
+}
+
+struct ADetail: View {
+    @StateObject var coordinator = Coordinator()
+    
+    // SwiftUI 에서 NavigationLink 는 View 내부에 위치해야 한다
+    // => 현재 View 에서 화면을 이동시켜야 한다
+    var body: some View {
+        NavigationView {
+            coordinator.navigationLink()
+        }.onAppear { coordinator.push(.mintView) }
     }
 }
 
@@ -30,7 +29,7 @@ struct TabHomeView: View {
     
     var body: some View {
         TabView(selection: $currentTab) {
-            BasicNavigationView()
+            ADetail()
                 .tabItem{ Text("One") }
                 .tag(Tab.one)
             

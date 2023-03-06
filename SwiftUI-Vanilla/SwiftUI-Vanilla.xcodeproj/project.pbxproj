@@ -16,6 +16,7 @@
 		986578B229B5B5E100BB1BDA /* SwiftUI_VanillaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578B129B5B5E100BB1BDA /* SwiftUI_VanillaUITestsLaunchTests.swift */; };
 		986578BF29B5C59000BB1BDA /* BasicNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578BE29B5C59000BB1BDA /* BasicNavigationView.swift */; };
 		986578C229B5C5E400BB1BDA /* CoordinateWithListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C129B5C5E400BB1BDA /* CoordinateWithListView.swift */; };
+		986578C529B5CE6A00BB1BDA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C429B5CE6A00BB1BDA /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		986578B129B5B5E100BB1BDA /* SwiftUI_VanillaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_VanillaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		986578BE29B5C59000BB1BDA /* BasicNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicNavigationView.swift; sourceTree = "<group>"; };
 		986578C129B5C5E400BB1BDA /* CoordinateWithListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateWithListView.swift; sourceTree = "<group>"; };
+		986578C429B5CE6A00BB1BDA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		9865789329B5B5DE00BB1BDA /* SwiftUI-Vanilla */ = {
 			isa = PBXGroup;
 			children = (
+				986578C329B5CE5700BB1BDA /* 2.Coordinator */,
 				986578C029B5C5CC00BB1BDA /* 1.Basic */,
 				9865789429B5B5DE00BB1BDA /* SwiftUI_VanillaApp.swift */,
 				9865789629B5B5DE00BB1BDA /* ContentView.swift */,
@@ -139,6 +142,14 @@
 				986578C129B5C5E400BB1BDA /* CoordinateWithListView.swift */,
 			);
 			path = 1.Basic;
+			sourceTree = "<group>";
+		};
+		986578C329B5CE5700BB1BDA /* 2.Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				986578C429B5CE6A00BB1BDA /* Coordinator.swift */,
+			);
+			path = 2.Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +284,7 @@
 			files = (
 				986578BF29B5C59000BB1BDA /* BasicNavigationView.swift in Sources */,
 				9865789729B5B5DE00BB1BDA /* ContentView.swift in Sources */,
+				986578C529B5CE6A00BB1BDA /* Coordinator.swift in Sources */,
 				986578C229B5C5E400BB1BDA /* CoordinateWithListView.swift in Sources */,
 				9865789529B5B5DE00BB1BDA /* SwiftUI_VanillaApp.swift in Sources */,
 			);
