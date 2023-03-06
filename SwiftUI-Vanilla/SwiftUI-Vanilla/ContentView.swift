@@ -17,15 +17,15 @@ struct TabHomeView: View {
     
     var body: some View {
         TabView(selection: $currentTab) {
-            RecipeListView()
+            ViewA()
                 .tabItem{ Text("One") }
                 .tag(Tab.one)
             
-            Text("Two")
+            ViewB()
                 .tabItem{ Text("Two") }
                 .tag(Tab.two)
             
-            Text("Three")
+            RecipeListView()
                 .tabItem{ Text("Three") }
                 .tag(Tab.three)
         }

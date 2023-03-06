@@ -19,6 +19,8 @@
 		986578C529B5CE6A00BB1BDA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C429B5CE6A00BB1BDA /* Coordinator.swift */; };
 		986578C729B5CFE400BB1BDA /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C629B5CFE400BB1BDA /* RecipeListView.swift */; };
 		986578C929B5DC7400BB1BDA /* ViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C829B5DC7400BB1BDA /* ViewA.swift */; };
+		986578CB29B5E12100BB1BDA /* ViewB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578CA29B5E12100BB1BDA /* ViewB.swift */; };
+		986578CD29B5E59600BB1BDA /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578CC29B5E59600BB1BDA /* Destination.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		986578C429B5CE6A00BB1BDA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		986578C629B5CFE400BB1BDA /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		986578C829B5DC7400BB1BDA /* ViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewA.swift; sourceTree = "<group>"; };
+		986578CA29B5E12100BB1BDA /* ViewB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewB.swift; sourceTree = "<group>"; };
+		986578CC29B5E59600BB1BDA /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 				986578C429B5CE6A00BB1BDA /* Coordinator.swift */,
 				986578C629B5CFE400BB1BDA /* RecipeListView.swift */,
 				986578C829B5DC7400BB1BDA /* ViewA.swift */,
+				986578CA29B5E12100BB1BDA /* ViewB.swift */,
+				986578CC29B5E59600BB1BDA /* Destination.swift */,
 			);
 			path = 2.Coordinator;
 			sourceTree = "<group>";
@@ -291,7 +297,9 @@
 				986578C929B5DC7400BB1BDA /* ViewA.swift in Sources */,
 				986578C729B5CFE400BB1BDA /* RecipeListView.swift in Sources */,
 				986578BF29B5C59000BB1BDA /* BasicNavigationView.swift in Sources */,
+				986578CB29B5E12100BB1BDA /* ViewB.swift in Sources */,
 				9865789729B5B5DE00BB1BDA /* ContentView.swift in Sources */,
+				986578CD29B5E59600BB1BDA /* Destination.swift in Sources */,
 				986578C529B5CE6A00BB1BDA /* Coordinator.swift in Sources */,
 				986578C229B5C5E400BB1BDA /* CoordinateWithListView.swift in Sources */,
 				9865789529B5B5DE00BB1BDA /* SwiftUI_VanillaApp.swift in Sources */,
