@@ -17,6 +17,8 @@
 		986578BF29B5C59000BB1BDA /* BasicNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578BE29B5C59000BB1BDA /* BasicNavigationView.swift */; };
 		986578C229B5C5E400BB1BDA /* CoordinateWithListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C129B5C5E400BB1BDA /* CoordinateWithListView.swift */; };
 		986578C529B5CE6A00BB1BDA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C429B5CE6A00BB1BDA /* Coordinator.swift */; };
+		986578C729B5CFE400BB1BDA /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C629B5CFE400BB1BDA /* RecipeListView.swift */; };
+		986578C929B5DC7400BB1BDA /* ViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578C829B5DC7400BB1BDA /* ViewA.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		986578BE29B5C59000BB1BDA /* BasicNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicNavigationView.swift; sourceTree = "<group>"; };
 		986578C129B5C5E400BB1BDA /* CoordinateWithListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateWithListView.swift; sourceTree = "<group>"; };
 		986578C429B5CE6A00BB1BDA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		986578C629B5CFE400BB1BDA /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		986578C829B5DC7400BB1BDA /* ViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewA.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				986578C429B5CE6A00BB1BDA /* Coordinator.swift */,
+				986578C629B5CFE400BB1BDA /* RecipeListView.swift */,
+				986578C829B5DC7400BB1BDA /* ViewA.swift */,
 			);
 			path = 2.Coordinator;
 			sourceTree = "<group>";
@@ -282,6 +288,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				986578C929B5DC7400BB1BDA /* ViewA.swift in Sources */,
+				986578C729B5CFE400BB1BDA /* RecipeListView.swift in Sources */,
 				986578BF29B5C59000BB1BDA /* BasicNavigationView.swift in Sources */,
 				9865789729B5B5DE00BB1BDA /* ContentView.swift in Sources */,
 				986578C529B5CE6A00BB1BDA /* Coordinator.swift in Sources */,

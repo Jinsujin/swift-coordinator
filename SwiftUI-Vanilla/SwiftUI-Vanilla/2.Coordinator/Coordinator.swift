@@ -4,6 +4,7 @@ enum Destination {
     case mintView
     case pinkView
     case tealView
+    case recipeView(Recipe)
     
     @ViewBuilder
     var view: some View {
@@ -11,6 +12,7 @@ enum Destination {
         case .mintView: ColorDetail(color: .mint)
         case .pinkView: ColorDetail(color: .pink)
         case .tealView: ColorDetail(color: .teal)
+        case .recipeView(let recipe): RecipeDetailView(recipe: recipe)
         }
     }
 }
@@ -24,6 +26,7 @@ enum Destination {
 final class Coordinator: ObservableObject {
     var destination: Destination = .mintView
     @Published private var navigationTrigger = false
+    
     
     func navigationLink() -> some View {
         NavigationLink(isActive: Binding<Bool>(get: getTrigger ,set: setTrigger)) {
