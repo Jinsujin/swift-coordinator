@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		983E631829B9CEA400B00016 /* MyComposablePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 983E631729B9CEA400B00016 /* MyComposablePackage */; };
+		983E631B29B9D07B00B00016 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 983E631A29B9D07B00B00016 /* ComposableArchitecture */; };
+		983E631E29B9D37F00B00016 /* FirstTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E631D29B9D37F00B00016 /* FirstTabView.swift */; };
+		983E632029B9D3AF00B00016 /* InventoryTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E631F29B9D3AF00B00016 /* InventoryTabView.swift */; };
+		983E632229B9D3C200B00016 /* ThirdTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E632129B9D3C200B00016 /* ThirdTabView.swift */; };
 		986578DB29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578DA29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift */; };
 		986578DD29B5E92300BB1BDA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578DC29B5E92300BB1BDA /* ContentView.swift */; };
 		986578DF29B5E92500BB1BDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 986578DE29B5E92500BB1BDA /* Assets.xcassets */; };
@@ -34,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		983E631529B9CD6200B00016 /* MyComposablePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MyComposablePackage; sourceTree = "<group>"; };
+		983E631D29B9D37F00B00016 /* FirstTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTabView.swift; sourceTree = "<group>"; };
+		983E631F29B9D3AF00B00016 /* InventoryTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTabView.swift; sourceTree = "<group>"; };
+		983E632129B9D3C200B00016 /* ThirdTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabView.swift; sourceTree = "<group>"; };
 		986578D729B5E92300BB1BDA /* SwiftUI-Composable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Composable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		986578DA29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ComposableApp.swift; sourceTree = "<group>"; };
 		986578DC29B5E92300BB1BDA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983E631B29B9D07B00B00016 /* ComposableArchitecture in Frameworks */,
+				983E631829B9CEA400B00016 /* MyComposablePackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,13 +82,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		983E631629B9CEA400B00016 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		983E631C29B9D37100B00016 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				983E631D29B9D37F00B00016 /* FirstTabView.swift */,
+				983E631F29B9D3AF00B00016 /* InventoryTabView.swift */,
+				983E632129B9D3C200B00016 /* ThirdTabView.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		986578CE29B5E92300BB1BDA = {
 			isa = PBXGroup;
 			children = (
+				983E631529B9CD6200B00016 /* MyComposablePackage */,
 				986578D929B5E92300BB1BDA /* SwiftUI-Composable */,
 				986578EA29B5E92500BB1BDA /* SwiftUI-ComposableTests */,
 				986578F429B5E92500BB1BDA /* SwiftUI-ComposableUITests */,
 				986578D829B5E92300BB1BDA /* Products */,
+				983E631629B9CEA400B00016 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +126,7 @@
 			children = (
 				986578DA29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift */,
 				986578DC29B5E92300BB1BDA /* ContentView.swift */,
+				983E631C29B9D37100B00016 /* New Group */,
 				986578DE29B5E92500BB1BDA /* Assets.xcassets */,
 				986578E029B5E92500BB1BDA /* Preview Content */,
 			);
@@ -143,6 +174,10 @@
 			dependencies = (
 			);
 			name = "SwiftUI-Composable";
+			packageProductDependencies = (
+				983E631729B9CEA400B00016 /* MyComposablePackage */,
+				983E631A29B9D07B00B00016 /* ComposableArchitecture */,
+			);
 			productName = "SwiftUI-Composable";
 			productReference = 986578D729B5E92300BB1BDA /* SwiftUI-Composable.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +250,9 @@
 				Base,
 			);
 			mainGroup = 986578CE29B5E92300BB1BDA;
+			packageReferences = (
+				983E631929B9D07B00B00016 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 986578D829B5E92300BB1BDA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,6 +296,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				986578DD29B5E92300BB1BDA /* ContentView.swift in Sources */,
+				983E632229B9D3C200B00016 /* ThirdTabView.swift in Sources */,
+				983E632029B9D3AF00B00016 /* InventoryTabView.swift in Sources */,
+				983E631E29B9D37F00B00016 /* FirstTabView.swift in Sources */,
 				986578DB29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,6 +618,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		983E631929B9D07B00B00016 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		983E631729B9CEA400B00016 /* MyComposablePackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MyComposablePackage;
+		};
+		983E631A29B9D07B00B00016 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 983E631929B9D07B00B00016 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 986578CF29B5E92300BB1BDA /* Project object */;
 }

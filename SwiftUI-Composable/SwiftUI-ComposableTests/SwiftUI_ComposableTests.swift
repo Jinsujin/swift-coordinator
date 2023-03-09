@@ -1,36 +1,62 @@
-//
-//  SwiftUI_ComposableTests.swift
-//  SwiftUI-ComposableTests
-//
-//  Created by Sujin Jin on 2023/03/06.
-//
-
+import ComposableArchitecture
 import XCTest
+
 @testable import SwiftUI_Composable
 
+/**
+ @MainActor 를 붙여줘야 한다!
+ 
+ Error Message:
+ The "Store" class is not thread-safe, and so all interactions with an instance of "Store" (including all of its scopes and derived view stores) must be done on the main thread.
+ 
+ */
+
+@MainActor
 final class SwiftUI_ComposableTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testGotoInventory() async {
+        // 테스트하기 위해 State 에 Equatable을 채택해야 한다
+        let store = TestStore(
+            initialState: AppFeature.State(),
+            reducer: AppFeature()
+        )
+        
+        // NOTE: - 테스트방법1. 액션을 실행하고 클로저 안에서 값 검사
+//        await store.send(.firstTab(.goInventoryButtonTapped)) {
+//            // 액션 실행 후에 들어온다
+////            −   selectedTab: .one,
+////            +   selectedTab: .two,
+//            $0.selectedTab = .two
+//        }
+        
+        //        await store.receive(.firstTab(.delegate(.switchToInventoryTab)))
+        
+        
+        // NOTE: - 테스트방법2. Action 을 실행하고, 결과를 받았을때(receive) assert 로 값 검증
+//        await store.send(.firstTab(.goInventoryButtonTapped))
+//        await store.receive {
+////            guard case .firstTab(.delegate(.switchToInventoryTab)) = $0 else {
+////                return false
+////            }
+//            guard case .firstTab(.delegate) = $0 else { return false }
+//            // match 하는 경우
+//            return true
+//        } assert: {
+//            $0.selectedTab = .two
+//        }
+        
+        // NOTE: - 테스트방법3. Case Path 를 사용해 위 코드를 아래처럼 줄일 수 있다
+//        await store.send(.firstTab(.goInventoryButtonTapped))
+//        await store.receive(
+//            (/AppFeature.Action.firstTab).appending(path: /FirstTabFeature.Action.delegate)
+//        ) {
+//            $0.selectedTab = .two
+//        }
+        
+        // NOTE: - 테스트방법4. Action 이 Equatable 을 채택해야 함
+        await store.send(.firstTab(.goInventoryButtonTapped))
+        await store.receive(.firstTab(.delegate(.switchToInventoryTab))) {
+            $0.selectedTab = .two
         }
     }
-
 }
