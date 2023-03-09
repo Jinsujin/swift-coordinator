@@ -16,7 +16,6 @@ struct AppFeature: ReducerProtocol {
         case thirdTab(ThirdTabFeature.Action)
     }
     
-    // Reducer<State, Action>
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
@@ -24,11 +23,12 @@ struct AppFeature: ReducerProtocol {
                 state.selectedTab = tab
                 return .none
                 
+            // 수정 전: 하위뷰의 이벤트를 바로 받아온다
 //            case .firstTab(.goInventoryButtonTapped):
 //                state.selectedTab = .two
 //                return .none
                 
-            // Delegate Action 을 사용해 하위뷰와 커뮤니케이션한다
+            // 수정 후: Delegate Action 을 사용해 하위뷰와 커뮤니케이션한다
             case let .firstTab(.delegate(action)):
                 switch action {
                 case .switchToInventoryTab:

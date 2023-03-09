@@ -17,9 +17,3 @@ struct InventoryTabView: View {
         Text("Inventory")
     }
 }
-
-//struct InventoryTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InventoryTabView()
-//    }
-//}

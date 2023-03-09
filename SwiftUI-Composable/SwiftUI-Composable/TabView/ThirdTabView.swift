@@ -17,9 +17,3 @@ struct ThirdTabView: View {
         Text("Third")
     }
 }
-
-//struct ThirdTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ThirdTabView()
-//    }
-//}

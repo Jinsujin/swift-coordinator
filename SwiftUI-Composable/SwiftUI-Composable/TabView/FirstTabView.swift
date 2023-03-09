@@ -37,9 +37,3 @@ struct FirstTabView: View {
         }
     }
 }
-
-//struct FirstTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FirstTabView()
-//    }
-//}
