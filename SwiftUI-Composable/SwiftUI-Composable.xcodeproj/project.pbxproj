@@ -14,6 +14,7 @@
 		983E632229B9D3C200B00016 /* ThirdTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E632129B9D3C200B00016 /* ThirdTabView.swift */; };
 		983E632429B9E24F00B00016 /* Vanilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E632329B9E24F00B00016 /* Vanilla.swift */; };
 		983E632629B9E4E300B00016 /* VanillaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E632529B9E4E300B00016 /* VanillaTests.swift */; };
+		983E633029BAFF0300B00016 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E632F29BAFF0300B00016 /* Models.swift */; };
 		986578DB29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578DA29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift */; };
 		986578DD29B5E92300BB1BDA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986578DC29B5E92300BB1BDA /* ContentView.swift */; };
 		986578DF29B5E92500BB1BDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 986578DE29B5E92500BB1BDA /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		983E632129B9D3C200B00016 /* ThirdTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabView.swift; sourceTree = "<group>"; };
 		983E632329B9E24F00B00016 /* Vanilla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vanilla.swift; sourceTree = "<group>"; };
 		983E632529B9E4E300B00016 /* VanillaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaTests.swift; sourceTree = "<group>"; };
+		983E632F29BAFF0300B00016 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		986578D729B5E92300BB1BDA /* SwiftUI-Composable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Composable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		986578DA29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ComposableApp.swift; sourceTree = "<group>"; };
 		986578DC29B5E92300BB1BDA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				986578DA29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift */,
 				986578DC29B5E92300BB1BDA /* ContentView.swift */,
+				983E632F29BAFF0300B00016 /* Models.swift */,
 				983E631C29B9D37100B00016 /* TabView */,
 				986578DE29B5E92500BB1BDA /* Assets.xcassets */,
 				986578E029B5E92500BB1BDA /* Preview Content */,
@@ -307,6 +310,7 @@
 				983E631E29B9D37F00B00016 /* FirstTabView.swift in Sources */,
 				986578DB29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift in Sources */,
 				983E632429B9E24F00B00016 /* Vanilla.swift in Sources */,
+				983E633029BAFF0300B00016 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
