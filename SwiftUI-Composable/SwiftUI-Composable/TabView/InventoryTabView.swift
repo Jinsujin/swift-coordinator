@@ -32,21 +32,23 @@ struct InventoryTabFeature: ReducerProtocol {
                 return .none
             }
                     
-            state.alert = AlertState {
-                TextState(#"Delete "\#(item.name)""#)
-            } actions: {
-//                    ButtonState(role: .destructive, action: .confirmDeletion(id: item.id)) {
-//                        TextState("Delete")
-//                    }
-                
-                // animation 을 줄 수 있다
-                ButtonState(role: .destructive, action: .send(.confirmDeletion(id: item.id), animation: .default)) {
-                    TextState("Delete")
-                }
-            } message: {
-                TextState("정말 삭제하시겠어요?")
-            }
+            state.alert = .delete(item: item)
             return .none
+        }
+    }
+}
+
+/// 테스트에서도 재사용하기 위해 분리
+extension AlertState where Action == InventoryTabFeature.Action.Alert {
+    static func delete(item: Item) -> Self {
+        AlertState {
+            TextState(#"Delete "\#(item.name)""#)
+        } actions: {
+            ButtonState(role: .destructive, action: .send(.confirmDeletion(id: item.id), animation: .default)) {
+                TextState("Delete")
+            }
+        } message: {
+            TextState("정말 삭제하시겠어요?")
         }
     }
 }

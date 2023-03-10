@@ -14,6 +14,25 @@ import XCTest
 @MainActor
 final class SwiftUI_ComposableTests: XCTestCase {
 
+    func testDelete() async {
+        let item = Item.headphones
+        
+        let store = TestStore(
+            initialState: InventoryTabFeature.State(items: [item]),
+            reducer: InventoryTabFeature()
+        )
+        
+        await store.send(.deleteButtonTapped(id: item.id)) {
+            $0.alert = .delete(item: item)
+        }
+        await store.send(.alert(.confirmDeletion(id: item.id))) {
+            $0.items = []
+        }
+        await store.send(.alert(.dismiss)) {
+            $0.alert = nil
+        }
+    }
+    
     func testGotoInventory() async {
         // 테스트하기 위해 State 에 Equatable을 채택해야 한다
         let store = TestStore(

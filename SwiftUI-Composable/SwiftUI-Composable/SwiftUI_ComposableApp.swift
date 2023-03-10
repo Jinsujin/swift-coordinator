@@ -7,8 +7,17 @@ struct SwiftUI_ComposableApp: App {
         WindowGroup {
             ContentView(
                 store: Store(
-                initialState: AppFeature.State(),
-                reducer: AppFeature()
+                initialState: AppFeature.State(
+                    inventoryTab: InventoryTabFeature.State(
+                        items: [
+                            .monitor,
+                            .mouse,
+                            .keyboard,
+                            .headphones
+                        ]
+                    )
+                ),
+                reducer: AppFeature()._printChanges()
                 )
             )
         }
