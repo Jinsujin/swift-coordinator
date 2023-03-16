@@ -17,28 +17,34 @@ struct InventoryTabFeature: ReducerProtocol {
         }
     }
     
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        switch action {
-            
-        case let .alert(.presented(.confirmDeletion(id: id))):
-            state.items.remove(id: id)
-            return .none
-
-        case .alert(.dismiss):
-            state.alert = nil
-            return .none
-
-        case let .deleteButtonTapped(id):
-            guard let item = state.items[id: id] else {
+    public var body: some ReducerProtocol<State, Action> {
+        Reduce { state, action in
+            switch action {
+                
+            case let .alert(.presented(.confirmDeletion(id: id))):
+                state.items.remove(id: id)
                 return .none
+                
+            case let .deleteButtonTapped(id):
+                guard let item = state.items[id: id] else {
+                    return .none
+                }
+                // alert 창을 보여준다
+                state.alert = .delete(item: item)
+                return .none
+                
+            case .alert:
+                return .none
+                
+// .alert(state: \.alert, action: /Action.alert) 를 구현함으로써
+// state 를 수동으로 nil 을 할당할 필요가 없어짐
+//            case .alert(.dismiss):
+//                state.alert = nil
+//                return .none
+
             }
-            // alert 창을 보여준다
-            state.alert = .delete(item: item)
-            return .none
-            
-        default:
-            return .none
         }
+        .alert(state: \.alert, action: /Action.alert)
     }
 }
 

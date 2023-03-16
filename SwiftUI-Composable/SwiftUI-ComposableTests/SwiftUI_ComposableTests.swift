@@ -25,10 +25,17 @@ final class SwiftUI_ComposableTests: XCTestCase {
         await store.send(.deleteButtonTapped(id: item.id)) {
             $0.alert = .delete(item: item)
         }
-        await store.send(.alert(.confirmDeletion(id: item.id))) {
+        
+//        await store.send(.alert(.presented(.confirmDeletion(id: item.id)))) {
+//            $0.items = []
+//        }
+//
+//        await store.send(.alert(.dismiss)) {
+//            $0.alert = nil
+//        }
+        
+        await store.send(.alert(.presented(.confirmDeletion(id: item.id)))) {
             $0.items = []
-        }
-        await store.send(.alert(.dismiss)) {
             $0.alert = nil
         }
     }
