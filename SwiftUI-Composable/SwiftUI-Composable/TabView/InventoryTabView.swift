@@ -8,7 +8,7 @@ struct InventoryTabFeature: ReducerProtocol {
         
     }
     enum Action: Equatable {
-        case alert(Alert)
+        case alert(AlertAction<Alert>)
         case deleteButtonTapped(id: Item.ID)
         
         enum Alert: Equatable {
@@ -19,20 +19,24 @@ struct InventoryTabFeature: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
-        case let .alert(.confirmDeletion(id: id)):
+            
+        case let .alert(.presented(.confirmDeletion(id: id))):
             state.items.remove(id: id)
             return .none
-            
+
         case .alert(.dismiss):
             state.alert = nil
             return .none
-            
+
         case let .deleteButtonTapped(id):
             guard let item = state.items[id: id] else {
                 return .none
             }
-                    
+            // alert 창을 보여준다
             state.alert = .delete(item: item)
+            return .none
+            
+        default:
             return .none
         }
     }
@@ -97,9 +101,14 @@ struct InventoryTabView: View {
                     )
                 }
             }
-            .alert(
-                self.store.scope(state: \.alert, action: InventoryTabFeature.Action.alert),
-                dismiss: .dismiss
+//            .alert(
+//                self.store.scope(state: \.alert, action: InventoryTabFeature.Action.alert),
+//                dismiss: .dismiss
+//            )
+            .alert(store:
+                    self.store.scope(
+                        state: \.alert,
+                        action: InventoryTabFeature.Action.alert)
             )
         }
     }

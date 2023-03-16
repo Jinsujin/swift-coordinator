@@ -22,7 +22,6 @@ public struct Item: Equatable, Identifiable {
     var quantity: Int?
     var isOnBackOrder: Bool?
     
-    
     public enum Status: Equatable {
         case inStock(quantity: Int)
         case outOfStock(isOnBackOrder: Bool)
