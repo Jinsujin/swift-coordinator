@@ -1,3 +1,4 @@
+import Dependencies
 import Foundation
 import SwiftUI
 
@@ -13,7 +14,10 @@ public struct Item: Equatable, Identifiable {
         color: Color? = nil,
         status: Status
     ) {
-        self.id = id ?? UUID()
+        // 테스트를 하기 어렵게 만드는 요인. Dependency 를 사용해 해결
+        // self.id = id ?? UUID()
+        @Dependency(\.uuid) var uuid
+        self.id = id ?? uuid()
         self.name = name
         self.color = color
         self.status = status

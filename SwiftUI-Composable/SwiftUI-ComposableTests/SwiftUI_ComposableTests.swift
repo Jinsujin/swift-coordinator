@@ -14,6 +14,39 @@ import XCTest
 @MainActor
 final class SwiftUI_ComposableTests: XCTestCase {
 
+    func testDuplicate() async {
+        let item = Item.headphones
+        
+        let store = TestStore(
+            initialState: InventoryTabFeature.State(items: [item]),
+            reducer: InventoryTabFeature()
+        ) {
+            $0.uuid = .incrementing
+        }
+// 클로저를 사용해 주입하는 방법을 추천
+//        store.dependencies.uuid = .incrementing
+        
+        await store.send(.duplicateButtonTapped(id: item.id)) {
+            $0.confirmationDialog = .duplicate(item: item)
+        }
+        
+        await store.send(.confirmationDialog(.presented(.confirmDuplication(id: item.id)))) {
+            $0.confirmationDialog = nil
+            $0.items = [
+                // Model 내부에서 UUID() 를 생성하므로 테스트는 무조건 실패
+                // => uuid dependency 를 외부에서 제어해서 해결
+//                item.duplicate(),
+                Item(
+                    id: UUID(uuidString: "00000000-0000-0000-0000-000000000000"),
+                    name: "Headphones",
+                    color: .blue,
+                    status: .inStock(quantity: 20)
+                ),
+                item
+            ]
+        }
+    }
+    
     func testDelete() async {
         let item = Item.headphones
         
