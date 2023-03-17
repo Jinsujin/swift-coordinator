@@ -10,6 +10,8 @@ struct InventoryTabFeature: ReducerProtocol {
     }
     
     enum Action: Equatable {
+        case cancelAddItemButtonTapped
+        case confirmAddItemButtonTapped
         case addButtonTapped
         case addItem(ItemFormFeature.Action)
         case dismissAddItem
@@ -32,6 +34,16 @@ struct InventoryTabFeature: ReducerProtocol {
     public var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
+            case .cancelAddItemButtonTapped:
+                state.addItem = nil
+                return .none
+                
+            case .confirmAddItemButtonTapped:
+                defer { state.addItem = nil }
+                guard let item = state.addItem?.item else { return .none }
+                state.items.append(item)
+                return .none
+                
             case .dismissAddItem:
                 state.addItem = nil
                 return .none
@@ -76,7 +88,6 @@ struct InventoryTabFeature: ReducerProtocol {
                 guard let item = state.items[id: id] else {
                     return .none
                 }
-                // alert 창을 보여준다
                 state.alert = .delete(item: item)
                 return .none
                 
@@ -199,6 +210,10 @@ struct InventoryTabView: View {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Add") {
                         viewStore.send(.addButtonTapped)
+                        // addButtonTapped Action 이 다시보내짐으로써 새로운 ID 가 생성되기 때문에 화면이 닫혔다가 다시 보여진다
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                            viewStore.send(.addButtonTapped)
+//                        }
                     }
                 }
             }
@@ -223,7 +238,21 @@ struct InventoryTabView: View {
                     action: InventoryTabFeature.Action.addItem
                     )
                 ) { store in
-                    ItemFormView(store: store)
+                    NavigationStack {
+                        ItemFormView(store: store)
+                            .toolbar {
+                                ToolbarItem(placement: .cancellationAction) {
+                                    Button("Cancel") {
+                                        viewStore.send(.cancelAddItemButtonTapped)
+                                    }
+                                }
+                                ToolbarItem(placement: .cancellationAction) {
+                                    Button("Confirm") {
+                                        viewStore.send(.confirmAddItemButtonTapped)
+                                    }
+                                }
+                            }.navigationTitle("New Item")
+                    }
                 }
                 
             }
