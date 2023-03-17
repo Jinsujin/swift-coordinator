@@ -3,12 +3,16 @@ import SwiftUI
 
 struct InventoryTabFeature: ReducerProtocol {
     struct State: Equatable {
+        var addItem: ItemFormFeature.State?
         var alert: AlertState<Action.Alert>?
         var items: IdentifiedArrayOf<Item> = []
         var confirmationDialog: ConfirmationDialogState<Action.Dialog>?
     }
     
     enum Action: Equatable {
+        case addButtonTapped
+        case addItem(ItemFormFeature.Action)
+        case dismissAddItem
         case alert(AlertAction<Alert>)
         case deleteButtonTapped(id: Item.ID)
         case duplicateButtonTapped(id: Item.ID)
@@ -28,6 +32,25 @@ struct InventoryTabFeature: ReducerProtocol {
     public var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
+            case .dismissAddItem:
+                state.addItem = nil
+                return .none
+                
+            case .addButtonTapped:
+                state.addItem = ItemFormFeature.State(
+                    item: Item(name: "", status: .inStock(quantity: 1))
+                )
+                return .none
+                
+            case .addItem:
+                return .none
+                
+                // ifLet 을 사용해 아래코드를 대체할 수 있음
+//            case let .addItem(action):
+//                guard var itemFormState = state.addItem else { return .none }
+//                let itemFormEffects = ItemFormFeature().reduce(into: &itemFormState, action: action)
+//                state.addItem = itemFormState
+//                return itemFormEffects.map(Action.addItem)
                 
             case let .confirmationDialog(.presented(.confirmDuplication(id: id))):
                 guard let item = state.items[id: id],
@@ -70,6 +93,10 @@ struct InventoryTabFeature: ReducerProtocol {
         }
         .alert(state: \.alert, action: /Action.alert)
         .confirmationDialog(state: \.confirmationDialog, action: /Action.confirmationDialog)
+        // addItem 이 nil 이 아니면
+        .ifLet(\.addItem, action: /Action.addItem) {
+            ItemFormFeature()
+        }
     }
 }
 
@@ -106,12 +133,24 @@ extension ConfirmationDialogState where Action == InventoryTabFeature.Action.Dia
 struct InventoryTabView: View {
     let store: StoreOf<InventoryTabFeature>
     
+    struct ViewState: Equatable {
+        // sheet 안의 내용이 바뀌는것에는 관심없다. sheet 에 영향을 주는것은 오로지 ID 이고, 이는 화면을 다시그리는데 필요한 값
+        let addItemID: Item.ID? //ItemFormFeature.State?
+        let items: IdentifiedArrayOf<Item>
+        
+        init(state: InventoryTabFeature.State) {
+            self.addItemID = state.addItem?.item.id
+            self.items = state.items
+        }
+    }
+    
     var body: some View {
         WithViewStore(
-            self.store, observe: \.items
-        ) { viewStore in
+            self.store, observe: ViewState.init
+        ) { (viewStore: ViewStore<ViewState, InventoryTabFeature.Action>) in
+            // preview 에러발생으로 viewStore 의 타입을 명시해줌
             List {
-                ForEach(viewStore.state) { item in
+                ForEach(viewStore.items) { item in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(item.name)
@@ -156,6 +195,13 @@ struct InventoryTabView: View {
                     )
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Add") {
+                        viewStore.send(.addButtonTapped)
+                    }
+                }
+            }
             .alert(store:
                     self.store.scope(
                         state: \.alert,
@@ -165,6 +211,22 @@ struct InventoryTabView: View {
                 state: \.confirmationDialog,
                 action: InventoryTabFeature.Action.confirmationDialog)
             )
+            .sheet(item: viewStore.binding(
+                get: { $0.addItemID.map { Identified($0, id: \.self) } },
+                send: .dismissAddItem)
+            ) { _ in
+                // addItemID 이 nil 이 아니면 화면을 이동한다
+                // 하지만 화면을 만드는데 필요가 없다
+                IfLetStore(
+                    self.store.scope(
+                    state: \.addItem,
+                    action: InventoryTabFeature.Action.addItem
+                    )
+                ) { store in
+                    ItemFormView(store: store)
+                }
+                
+            }
         }
     }
 }
