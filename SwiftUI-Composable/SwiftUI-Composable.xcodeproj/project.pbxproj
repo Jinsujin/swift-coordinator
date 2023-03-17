@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9837972129C47F4D009B3EAB /* ItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9837972029C47F4D009B3EAB /* ItemForm.swift */; };
 		983E631829B9CEA400B00016 /* MyComposablePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 983E631729B9CEA400B00016 /* MyComposablePackage */; };
 		983E631B29B9D07B00B00016 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 983E631A29B9D07B00B00016 /* ComposableArchitecture */; };
 		983E631E29B9D37F00B00016 /* FirstTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E631D29B9D37F00B00016 /* FirstTabView.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9837972029C47F4D009B3EAB /* ItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemForm.swift; sourceTree = "<group>"; };
 		983E631529B9CD6200B00016 /* MyComposablePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MyComposablePackage; sourceTree = "<group>"; };
 		983E631D29B9D37F00B00016 /* FirstTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTabView.swift; sourceTree = "<group>"; };
 		983E631F29B9D3AF00B00016 /* InventoryTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTabView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				983E633129BB082500B00016 /* Navigation.swift */,
+				9837972029C47F4D009B3EAB /* ItemForm.swift */,
 				986578DA29B5E92300BB1BDA /* SwiftUI_ComposableApp.swift */,
 				986578DC29B5E92300BB1BDA /* ContentView.swift */,
 				983E632F29BAFF0300B00016 /* Models.swift */,
@@ -311,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9837972129C47F4D009B3EAB /* ItemForm.swift in Sources */,
 				986578DD29B5E92300BB1BDA /* ContentView.swift in Sources */,
 				983E632229B9D3C200B00016 /* ThirdTabView.swift in Sources */,
 				983E632029B9D3AF00B00016 /* InventoryTabView.swift in Sources */,

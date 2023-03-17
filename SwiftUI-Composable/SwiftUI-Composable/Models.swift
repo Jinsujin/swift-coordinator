@@ -23,8 +23,8 @@ public struct Item: Equatable, Identifiable {
         self.status = status
     }
     
-    var quantity: Int?
-    var isOnBackOrder: Bool?
+//    var quantity: Int?
+//    var isOnBackOrder: Bool?
     
     public enum Status: Equatable {
         case inStock(quantity: Int)

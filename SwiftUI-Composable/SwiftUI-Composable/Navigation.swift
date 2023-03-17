@@ -23,7 +23,6 @@ extension View {
         WithViewStore(
             store,
             observe: { $0 },
-            // 33:29
             // alert state 가 nil -> non nil 로 변경되거나 그 반대일떄만 수행
             removeDuplicates: { ($0 != nil) == ($1 != nil) }
         ) { viewStore in
