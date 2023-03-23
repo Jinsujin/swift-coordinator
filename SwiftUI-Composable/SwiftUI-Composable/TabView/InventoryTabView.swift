@@ -13,8 +13,8 @@ struct InventoryTabFeature: ReducerProtocol {
         case cancelAddItemButtonTapped
         case confirmAddItemButtonTapped
         case addButtonTapped
-        case addItem(ItemFormFeature.Action)
-        case dismissAddItem
+        case addItem(SheetAction<ItemFormFeature.Action>)
+//        case dismissAddItem
         case alert(AlertAction<Alert>)
         case deleteButtonTapped(id: Item.ID)
         case duplicateButtonTapped(id: Item.ID)
@@ -34,25 +34,11 @@ struct InventoryTabFeature: ReducerProtocol {
     public var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
-            case .cancelAddItemButtonTapped:
-                state.addItem = nil
-                return .none
                 
-            case .confirmAddItemButtonTapped:
-                defer { state.addItem = nil }
-                guard let item = state.addItem?.item else { return .none }
-                state.items.append(item)
-                return .none
-                
-            case .dismissAddItem:
-                state.addItem = nil
-                return .none
-                
-            case .addButtonTapped:
-                state.addItem = ItemFormFeature.State(
-                    item: Item(name: "", status: .inStock(quantity: 1))
-                )
-                return .none
+            // Sheet Reducer 에서 처리함으로써 필요없게 됨
+//            case .addItem(.dismiss):
+//                state.addItem = nil
+//                return .none
                 
             case .addItem:
                 return .none
@@ -63,6 +49,24 @@ struct InventoryTabFeature: ReducerProtocol {
 //                let itemFormEffects = ItemFormFeature().reduce(into: &itemFormState, action: action)
 //                state.addItem = itemFormState
 //                return itemFormEffects.map(Action.addItem)
+                
+                
+            case .cancelAddItemButtonTapped:
+                state.addItem = nil
+                return .none
+                
+            case .confirmAddItemButtonTapped:
+                defer { state.addItem = nil }
+                guard let item = state.addItem?.item else { return .none }
+                state.items.append(item)
+                return .none
+                
+
+            case .addButtonTapped:
+                state.addItem = ItemFormFeature.State(
+                    item: Item(name: "", status: .inStock(quantity: 1))
+                )
+                return .none
                 
             case let .confirmationDialog(.presented(.confirmDuplication(id: id))):
                 guard let item = state.items[id: id],
@@ -104,10 +108,17 @@ struct InventoryTabFeature: ReducerProtocol {
         }
         .alert(state: \.alert, action: /Action.alert)
         .confirmationDialog(state: \.confirmationDialog, action: /Action.confirmationDialog)
-        // addItem 이 nil 이 아니면
-        .ifLet(\.addItem, action: /Action.addItem) {
+        
+        .sheet(state: \.addItem, action: /Action.addItem) {
             ItemFormFeature()
         }
+        
+//        .ifLet(
+//            \.addItem,
+//             action: (/Action.addItem).appending(path: /SheetAction.presented)
+//        ) {
+//            ItemFormFeature()
+//        }
     }
 }
 
@@ -226,35 +237,25 @@ struct InventoryTabView: View {
                 state: \.confirmationDialog,
                 action: InventoryTabFeature.Action.confirmationDialog)
             )
-            .sheet(item: viewStore.binding(
-                get: { $0.addItemID.map { Identified($0, id: \.self) } },
-                send: .dismissAddItem)
-            ) { _ in
-                // addItemID 이 nil 이 아니면 화면을 이동한다
-                // 하지만 화면을 만드는데 필요가 없다
-                IfLetStore(
-                    self.store.scope(
-                    state: \.addItem,
-                    action: InventoryTabFeature.Action.addItem
-                    )
-                ) { store in
-                    NavigationStack {
-                        ItemFormView(store: store)
-                            .toolbar {
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button("Cancel") {
-                                        viewStore.send(.cancelAddItemButtonTapped)
-                                    }
+            .sheet(store: self.store.scope(
+                state: \.addItem,
+                action: InventoryTabFeature.Action.addItem)
+            ) { store in
+                NavigationStack {
+                    ItemFormView(store: store)
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Cancel") {
+                                    viewStore.send(.cancelAddItemButtonTapped)
                                 }
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button("Confirm") {
-                                        viewStore.send(.confirmAddItemButtonTapped)
-                                    }
+                            }
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Confirm") {
+                                    viewStore.send(.confirmAddItemButtonTapped)
                                 }
-                            }.navigationTitle("New Item")
-                    }
+                            }
+                        }.navigationTitle("New Item")
                 }
-                
             }
         }
     }

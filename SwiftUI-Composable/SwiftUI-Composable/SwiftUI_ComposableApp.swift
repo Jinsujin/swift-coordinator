@@ -8,7 +8,11 @@ struct SwiftUI_ComposableApp: App {
             ContentView(
                 store: Store(
                 initialState: AppFeature.State(
+                    selectedTab: .two,
                     inventoryTab: InventoryTabFeature.State(
+                        addItem: ItemFormFeature.State(
+                            item: Item(name: "Macbook", status: .inStock(quantity: 100))
+                        ),
                         items: [
                             .monitor,
                             .mouse,
