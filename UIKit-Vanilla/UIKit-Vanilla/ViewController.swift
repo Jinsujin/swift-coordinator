@@ -6,7 +6,5 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .orange
     }
-
-
 }
 
