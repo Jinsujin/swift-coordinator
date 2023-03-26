@@ -22,6 +22,7 @@ class MainCoordinator: Coordinator {
             self.showSetting(viewController)
         }
         self.navigationController.viewControllers = [viewController]
+        print("--------✅ [MainCoordinator] Started---------")
     }
     
     private func showSetting(_ vc: MainViewController) {

@@ -22,6 +22,7 @@ class AuthCoordinator: Coordinator {
             self.finishFlow?()
         }
         self.navigationController.viewControllers = [viewController]
+        print("--------✅ [AuthCoordinator] Started---------")
     }
 }
 

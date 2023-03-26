@@ -153,7 +153,7 @@
 		989C877729CF643A009FB675 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				989C877829CF6445009FB675 /* Coordinator.swift */,
+				989C878629D03663009FB675 /* Protocol */,
 				989C876F29CF229B009FB675 /* RootCoordinator.swift */,
 				989C877A29CF759E009FB675 /* SettingsCoordinator.swift */,
 				989C877F29CF7824009FB675 /* AuthCoordinator.swift */,
@@ -186,6 +186,14 @@
 				989C877329CF25EC009FB675 /* MainViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		989C878629D03663009FB675 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				989C877829CF6445009FB675 /* Coordinator.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

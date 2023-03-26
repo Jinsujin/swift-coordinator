@@ -16,18 +16,19 @@ final class RootCoordinator: NSObject, Coordinator {
     
     func start() {
         if isAutorized {
-            showMainViewController()
+            showMainFlow()
         } else {
-            showLoginViewController()
+            showAuthFlow()
         }
         navigationController.delegate = self
     }
     
-    private func showMainViewController() {
+    private func showMainFlow() {
         let coordinator = MainCoordinator(navigationController: self.navigationController)
         // 클로저가 실행했을때, self(Coordinator) 의 생명주기가 더 길기때문에 unowned 를 사용해도 된다
         coordinator.finishFlow = { [unowned self, unowned coordinator] in
             self.removeDependency(coordinator)
+            print("-------- 🗑️ [MainCoordinator] Removed---------")
             self.isAutorized = false
             self.start()
         }
@@ -35,10 +36,11 @@ final class RootCoordinator: NSObject, Coordinator {
         coordinator.start()
     }
     
-    private func showLoginViewController() {
+    private func showAuthFlow() {
         let coordinator = AuthCoordinator(navigationController: self.navigationController)
         coordinator.finishFlow = { [unowned self, unowned coordinator] in
             self.removeDependency(coordinator)
+            print("-------- 🗑️ [AuthCoordinator] Removed---------")
             self.isAutorized = true
             self.start()
         }
